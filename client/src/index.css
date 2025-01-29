@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "poppinsRegular";
+    src: url("./assets/fonts/Poppins-Regular.ttf");
+}
+
+@font-face {
+    font-family: "poppinsBlack";
+    src: url("./assets/fonts/Poppins-Black.ttf");
+}
+
+@font-face {
+    font-family: "poppinsBold";
+    src: url("./assets/fonts/Poppins-Bold.ttf");
+}
+
+@font-face {
+    font-family: "poppinsExtraBold";
+    src: url("./assets/fonts/Poppins-ExtraBold.ttf");
+}
+
+@font-face {
+    font-family: "poppinsExtraLight";
+    src: url("./assets/fonts/Poppins-ExtraLight.ttf");
+}
+
+@font-face {
+    font-family: "poppinsLight";
+    src: url("./assets/fonts/Poppins-Light.ttf");
+}
+
+
+@font-face {
+    font-family: "poppinsMedium";
+    src: url("./assets/fonts/Poppins-Medium.ttf");
+}
+
+@font-face {
+    font-family: "poppinsSemiBold";
+    src: url("./assets/fonts/Poppins-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: "poppinsThin";
+    src: url("./assets/fonts/Poppins-Thin.ttf");
+}
