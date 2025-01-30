@@ -11,7 +11,7 @@ const AuthPage = () => {
       <div className=" bg-white    rounded-2xl w-1/2  p-20 space-y-5 flex flex-col items-center justify-center ">
         <SiGoogleadsense className=" text-indigo-600 size-40" />
         <p className=" text-black  pb-10 pt-5  text-4xl font-semibold leading-tight text-center ">
-          Startup Ecosystem Dashboard for Student Enterpreneurs
+          Startup Ecosystem Dashboard for Student Entrepreneurs
         </p>
         <div className=" w-full  px-20 space-y-3">
           <AuthenticationButton

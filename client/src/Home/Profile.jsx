@@ -20,8 +20,8 @@ const Profile = () => {
         <FaShop className=" text-gray-600 -bottom-10 right-20 absolute size-60 " />
       </div>
       <div className=" my-5 flex items-center justify-center bg-gray-100  *:p-2 space-x-4 *:rounded-xl *:px-3">
-        <p>Purchased</p>
-        <p>Sold</p>
+        {/* <p>Purchased</p>
+        <p>Sold</p> */}{" "}
       </div>
       <div className=" pb-10 grid grid-cols-3 px-10 gap-10">
         {Productdata &&
