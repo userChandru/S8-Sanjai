@@ -30,10 +30,10 @@ const HomePage = () => {
   );
 
   return (
-    <div className="flex ">
+    <div className="flex relative ">
       <Navbar />
       <div className="bg-white m-2 rounded-2xl h-[97.5vh] overflow-scroll  scrollbar-none w-full">
-        <header className=" p-3">
+        <header className=" sticky top-0 z-20 bg-white  p-3">
           <p className=" text-3xl  font-semibold">
             {currentNavItem ? currentNavItem.name : "Page Not Found"}
           </p>

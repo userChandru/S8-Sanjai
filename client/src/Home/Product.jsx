@@ -1,29 +1,24 @@
 import React from "react";
-import { FaShop } from "react-icons/fa6";
-import Userdata from "../data/Userdata";
-import avatar from "../assets/img/avatar.png";
-import { MdEdit, MdInventory } from "react-icons/md";
-import { HiPercentBadge } from "react-icons/hi2";
-import { TbCurrencyRupee } from "react-icons/tb";
 import Productdata from "../data/Productdata";
-const Profile = () => {
+import avatar from "../assets/img/avatar.png";
+import { RiShoppingBag3Fill } from "react-icons/ri";
+import { FaShopify } from "react-icons/fa";
+
+import { TbCurrencyRupee } from "react-icons/tb";
+import { HiPercentBadge } from "react-icons/hi2";
+import { MdInventory } from "react-icons/md";
+
+const Product = () => {
   return (
     <div>
-      <div className=" overflow-hidden relative bg-gray-100 w-full h-60">
+      <div className=" mb-10 overflow-hidden relative bg-gray-100 w-full h-60">
         <div className=" space-y-2 text-6xl font-bold absolute top-10 left-5 text-gray-600">
-          <p>{Userdata.bussinessName}</p>
-          <p className="  text-gray-400 text-4xl font-semibold">
-            {Userdata.businessSector} Sector
-          </p>
+          <p>Company Name</p>
         </div>
 
-        <FaShop className=" text-gray-600 -bottom-10 right-20 absolute size-60 " />
+        <FaShopify className=" text-gray-600 -bottom-10 right-20 absolute size-60 " />
       </div>
-      <div className=" my-5 flex items-center justify-center bg-gray-100  *:p-2 space-x-4 *:rounded-xl *:px-3">
-        <p>Purchased</p>
-        <p>Sold</p>
-      </div>
-      <div className=" pb-10 grid grid-cols-3 px-10 gap-10">
+      <div className=" py-10 grid grid-cols-3 px-10 gap-10">
         {Productdata &&
           Productdata.map((pro) => (
             <div className=" relative bg-gray-100 p-2 rounded-xl">
@@ -48,9 +43,9 @@ const Profile = () => {
                   <span>20% Offer</span>
                 </p>
               </div>
-              <div className=" rounded-xl flex items-center justify-center space-x-4 text-white p-2 text-center bg-gray-800">
-                <p className=" font-semibold">Edit</p>
-                <MdEdit className=" size-5" />
+              <div className=" rounded-xl flex items-center justify-center space-x-4 text-white p-2 text-center bg-black">
+                <p className=" font-semibold">Add to cart</p>
+                <RiShoppingBag3Fill className=" size-5" />
               </div>
               <div className=" absolute top-4 right-4 flex items-center space-x-3">
                 <div className="  flex ">
@@ -71,4 +66,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default Product;

@@ -8,6 +8,7 @@ import Profile from "./Home/Profile";
 import ErrorPage from "./Pages/ErrorPage";
 import HomePage from "./Pages/HomePage";
 import Authentication from "./Admin/Authentication";
+import Product from "./Home/Product";
 
 const App = () => {
   return (
@@ -16,12 +17,13 @@ const App = () => {
         <Routes>
           {" "}
           <Route index element={<AuthPage />} />
-           <Route path="/auth" element={<Authentication />} />
+          <Route path="/auth" element={<Authentication />} />
           <Route element={<HomePage />}>
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="marketplace" element={<Marketplace />} />
             <Route path="bank" element={<Bank />} />
             <Route path="profile" element={<Profile />} />
+            <Route path="/name" element={<Product />} />
           </Route>
           <Route path="*" element={<ErrorPage />} />
         </Routes>

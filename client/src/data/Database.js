@@ -101,7 +101,7 @@ export default [
   {
     name: "Arjun Patel",
     email: "arjun@gmail.com",
-    bussinessName: "Fresh Bakes",
+    bussinessName: "Manimeghalai Bakes",
     businessSector: "Bakery",
     Products: [
       {
