@@ -1,12 +1,18 @@
+/* eslint-disable react/jsx-key */
 import React from "react";
 import { FaShop } from "react-icons/fa6";
+import { FaEdit } from "react-icons/fa";
 import Userdata from "../data/Userdata";
 import avatar from "../assets/img/avatar.png";
-import { MdEdit, MdInventory } from "react-icons/md";
+import { MdInventory } from "react-icons/md";
 import { HiPercentBadge } from "react-icons/hi2";
 import { TbCurrencyRupee } from "react-icons/tb";
 import Productdata from "../data/Productdata";
+import { useNavigate } from 'react-router-dom';
+
 const Profile = () => {
+  const navigate = useNavigate();
+
   return (
     <div>
       <div className=" overflow-hidden relative bg-gray-100 w-full h-60">
@@ -16,7 +22,6 @@ const Profile = () => {
             {Userdata.businessSector} Sector
           </p>
         </div>
-
         <FaShop className=" text-gray-600 -bottom-10 right-20 absolute size-60 " />
       </div>
       <div className=" my-5 flex items-center justify-center bg-gray-100  *:p-2 space-x-4 *:rounded-xl *:px-3">
@@ -49,8 +54,19 @@ const Profile = () => {
                 </p>
               </div>
               <div className=" rounded-xl flex items-center justify-center space-x-4 text-white p-2 text-center bg-gray-800">
-                <p className=" font-semibold">Edit</p>
-                <MdEdit className=" size-5" />
+                <button
+                  className="font-semibold flex items-center space-x-2"
+                  onClick={() => {
+                    navigate('/edit-product', { 
+                      state: { 
+                        product: pro 
+                      } 
+                    });
+                  }}
+                >
+                  <span>Edit</span>
+                  <FaEdit className="size-5" />
+                </button>
               </div>
               <div className=" absolute top-4 right-4 flex items-center space-x-3">
                 <div className="  flex ">

@@ -1,5 +1,6 @@
 import React from "react";
 import { useField } from "formik";
+import PropTypes from "prop-types";
 
 const InputComponent = ({
   label,
@@ -11,26 +12,27 @@ const InputComponent = ({
   const [field, meta] = useField(props);
 
   return (
-    <div className="relative">
+    <div className="space-y-2">
+      <label className="text-lg font-semibold text-gray-700 block pl-1">
+        {label}
+      </label>
       {type === "textarea" ? (
         <textarea
           {...field}
           {...props}
-          className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm ${
-            meta.touched && meta.error
-              ? "border-red-500 focus:border-red-500 focus:ring-red-500"
-              : ""
-          }`}
+          className="w-full p-4 rounded-xl bg-[#e0e5ec] text-gray-700
+            shadow-[inset_6px_6px_12px_#bec3c9,inset_-6px_-6px_12px_#ffffff]
+            border-none outline-none focus:shadow-[inset_8px_8px_16px_#bec3c9,inset_-8px_-8px_16px_#ffffff]
+            transition-all duration-200"
         />
       ) : type === "select" ? (
         <select
           {...field}
           {...props}
-          className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm ${
-            meta.touched && meta.error
-              ? "border-red-500 focus:border-red-500 focus:ring-red-500"
-              : ""
-          }`}
+          className="w-full p-4 rounded-xl bg-[#e0e5ec] text-gray-700
+            shadow-[inset_6px_6px_12px_#bec3c9,inset_-6px_-6px_12px_#ffffff]
+            border-none outline-none focus:shadow-[inset_8px_8px_16px_#bec3c9,inset_-8px_-8px_16px_#ffffff]
+            transition-all duration-200"
         >
           <option value="" disabled>
             Select an option
@@ -47,23 +49,21 @@ const InputComponent = ({
           {...props}
           placeholder={label}
           type={type}
-          className={`peer w-full font-semibold  rounded-xl border-3 focus:border-3 focus:outline-none focus:ring-0   p-2 pt-6 transition-all duration-200 ease-in-out placeholder:invisible  ${
-            meta.touched && meta.error
-              ? " placeholder:invisible border-red-500 focus:border-red-500"
-              : " focus:border-indigo-600 border-slate-600 "
-          } `}
+          className="w-full p-4 rounded-xl bg-[#e0e5ec] text-gray-700
+            shadow-[inset_6px_6px_12px_#bec3c9,inset_-6px_-6px_12px_#ffffff]
+            border-none outline-none focus:shadow-[inset_8px_8px_16px_#bec3c9,inset_-8px_-8px_16px_#ffffff]
+            transition-all duration-200"
         />
       )}
-      {label && (
-        <label
-          htmlFor={props.id || props.name}
-          className={`absolute  top-2 left-3 block text-sm font-semibold text-gray-700 peer-placeholder-shown:top-4 peer-placeholder-shown:left-3  transition-all duration-200 ease-in-out peer-placeholder-shown:text-lg peer-focus:text-sm peer-focus:top-2 peer-focus:left-3 peer-focus:text-indigo-600 ${meta.touched && meta.error ? "text-red-500 peer-focus:text-red-500" : ""}`}
-        >
-          {meta.touched && meta.error ? meta.error : label}
-        </label>
-      )}
+      {meta.touched && meta.error ? (
+        <div className="text-red-500 text-sm font-medium pl-1">{meta.error}</div>
+      ) : null}
     </div>
   );
+};
+
+InputComponent.propTypes = {
+  label: PropTypes.string.isRequired,
 };
 
 export default InputComponent;
