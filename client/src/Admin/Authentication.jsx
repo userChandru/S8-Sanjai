@@ -4,9 +4,12 @@ import InputComponent from '../Components/InputComponent'
 import * as Yup from "yup"
 import { Formik, Form } from "formik"
 import { MdAdminPanelSettings } from "react-icons/md";
-const Authentication = () => {
+import { useNavigate } from 'react-router-dom';
 
-      const initialvalues = {
+const Authentication = () => {
+  const navigate = useNavigate();
+
+  const initialvalues = {
     email: "",
     password: "",
   };
@@ -16,7 +19,6 @@ const Authentication = () => {
       .email("Invalid email address")
       .required("Email is required"),
     password: Yup.string()
-      .min(8, "Password must be at least 8 characters")
       .required("Password is required"),
   });
 
@@ -33,38 +35,57 @@ const Authentication = () => {
     },
   ];
     
+  const handleSubmit = (values, { setSubmitting, setErrors }) => {
+    if (values.email === "chandru@gmail.com" && values.password === "asdfghjk") {
+      localStorage.setItem("adminAuth", "true");
+      navigate("/dashboard");
+    } else {
+      setErrors({ email: "Invalid credentials", password: "Invalid credentials" });
+    }
+    setSubmitting(false);
+  };
+
   return (
-      <div className=' flex items-center justify-center  '>
-          <div className=' bg-white p-20 flex flex-col items-center justify-center w-1/2 rounded-xl'>
-              <div className=' flex flex-col mb-10 items-center justify-center space-x-3'>
-                                <MdAdminPanelSettings className='  size-40' />
-                  <p className=' text-4xl font-semibold'>Admin Authentication</p>
-
-
-              </div>
-                      <Formik
+    <div className='min-h-screen bg-[#e0e5ec] flex items-center justify-center p-4'>
+      <div className='bg-[#e0e5ec] rounded-2xl w-full max-w-2xl p-8 md:p-12
+        shadow-[20px_20px_60px_#bec3c9,-20px_-20px_60px_#ffffff]'>
+        <div className='flex flex-col items-center justify-center mb-8'>
+          <div className='p-6 rounded-full mb-6
+            shadow-[8px_8px_16px_#bec3c9,-8px_-8px_16px_#ffffff]'>
+            <MdAdminPanelSettings className='text-indigo-600 size-20' />
+          </div>
+          <h1 className='text-gray-800 text-3xl md:text-4xl font-semibold'>
+            Admin Authentication
+          </h1>
+        </div>
+        <Formik
           initialValues={initialvalues}
           validationSchema={validationSchema}
-          onSubmit={(values) => {
-            console.log(values);
-          }}
+          onSubmit={handleSubmit}
         >
           {({ isSubmitting }) => (
-            <Form className="mx-auto w-full max-w-md space-y-4 py-4">
+            <Form className="w-full max-w-md mx-auto space-y-6">
               {fields.map(({ label, ...fieldProps }, index) => (
-                <InputComponent key={index} label={label} {...fieldProps} />
+                <div key={index} className="transform transition-all duration-200 hover:scale-[1.02]">
+                  <InputComponent 
+                    label={label} 
+                    {...fieldProps}
+                  />
+                </div>
               ))}
-              <ButtonComponent
-                type="submit"
-                name={"Submit"}
-                isSubmitting={isSubmitting}
-              />
+              <div className="transform transition-all duration-200 hover:scale-[1.02] pt-4">
+                <ButtonComponent
+                  type="submit"
+                  name={isSubmitting ? "Authenticating..." : "Login to Dashboard"}
+                  isSubmitting={isSubmitting}
+                />
+              </div>
             </Form>
           )}
         </Formik>
-          </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Authentication
+export default Authentication;
