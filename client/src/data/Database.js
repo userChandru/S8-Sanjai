@@ -1,5 +1,6 @@
 export default [
   {
+    
     name: "Sanjai G",
     email: "sanjai@gmail.com",
     bussinessName: "Rootz Prvt Limited",
@@ -18,7 +19,7 @@ export default [
       {
         name: "Cucumbers",
         price: 60,
-        quantity: 400,
+        quantity: 400,  
       },
       {
         name: "Bananas",

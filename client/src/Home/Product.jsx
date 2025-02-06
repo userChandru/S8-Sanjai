@@ -1,5 +1,6 @@
 import React from "react";
-import Productdata from "../data/Productdata";
+// import Productdata from "../data/Productdata";
+import Productdata from "../data2/Productdata";
 import avatar from "../assets/img/avatar.png";
 import { RiShoppingBag3Fill } from "react-icons/ri";
 import { FaShopify } from "react-icons/fa";
