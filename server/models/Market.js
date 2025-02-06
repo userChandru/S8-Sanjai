@@ -33,19 +33,19 @@ const marketSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    Products: [productSchema],
-    capital: {
-        type: Number,
-        required: true
-    },
-    annualTurnover: {
-        type: Number,
-        required: true
-    },
-    profit: {
-        type: Number,
-        required: true
-    }
+    marketImage: String,
+    capital: Number,
+    annualTurnover: Number,
+    profit: Number,
+    rating: Number,
+    location: String,
+    partnerSince: String,
+    products: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product'
+    }],
+}, {
+    timestamps: true
 });
 
 module.exports = mongoose.model('Market', marketSchema); 
