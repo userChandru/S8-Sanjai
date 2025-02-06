@@ -2,12 +2,12 @@
 import React from "react";
 import { FaShop } from "react-icons/fa6";
 import { FaEdit } from "react-icons/fa";
-import Userdata from "../data/Userdata";
+import Userdata from "../data2/Userdata";
 import avatar from "../assets/img/avatar.png";
 import { MdInventory } from "react-icons/md";
 import { HiPercentBadge } from "react-icons/hi2";
 import { TbCurrencyRupee } from "react-icons/tb";
-import Productdata from "../data/Productdata";
+import Productdata from "../data2/Productdata";
 import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {

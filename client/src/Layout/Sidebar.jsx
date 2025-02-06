@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import avatar from "../assets/img/Avatar.png";
-import Userdata from "../data/Userdata";
+// import Userdata from "../data/Userdata";
+import Userdata from "../data2/Userdata";
 import { RiShoppingBag3Fill } from "react-icons/ri";
 import Lottie from "lottie-react";
 import Garbagecan from "../assets/Animation/garbage.json"
@@ -36,9 +37,9 @@ const Sidebar = () => {
       <div className="relative p-1">
         {/* Circular progress background */}
         <div 
-          className="absolute inset-0 rounded-xl"
+          className="absolute inset-0 rounded-xl border border-[#edeeee]"
           style={{
-            background: `conic-gradient(from 0deg, #475569 ${progress}%, transparent ${progress}%)`,
+            background: `conic-gradient(from 0deg, #313323 ${progress}%, transparent ${progress}%)`,
             maskImage: 'radial-gradient(transparent 65%, black 66%)',
             WebkitMaskImage: 'radial-gradient(transparent 65%, black 66%)',
           }}
