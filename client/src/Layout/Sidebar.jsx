@@ -9,6 +9,7 @@ import Garbagecan from "../assets/Animation/garbage.json"
 const Sidebar = () => {
   const [time, setTime] = useState("");
   const [progress, setProgress] = useState(0);
+  const [currentUser] = useState(Userdata[3]); // Get the first user from the array
 
   useEffect(() => {
     const updateTime = () => {
@@ -51,15 +52,15 @@ const Sidebar = () => {
           <p className="font-bold text-8xl font-mono tracking-wider">{time}</p>
         </div>
       </div>
-      <div className="flex items-center p-3 rounded-xl bg-gray-100 space-x-5 justify-between">
-        <div className="text-slate-700 flex-1 flex flex-col items-start justify-end font-semibold text-right">
-          <p className="text-black text-xl">{Userdata.name}</p>
-          <p>{Userdata.email}</p>
+      <div className="flex items-center p-3 rounded-xl bg-gray-100 space-x-5">
+        <div className="text-slate-700 flex-1 flex flex-col items-start justify-end font-semibold">
+          <p className="text-black text-xl">{currentUser?.name}</p>
+          <p className="text-gray-600">{currentUser?.email}</p>
         </div>
         <img
-          src={avatar}
+          src={currentUser?.image || avatar}
           alt="User avatar"
-          className="bg-white flex-2 rounded-full overflow-hidden h-20"
+          className="h-20 rounded-full overflow-hidden bg-white"
         />
       </div>
       <div className="flex-1 flex flex-col items-center rounded-xl justify-between bg-gray-100 w-full">
