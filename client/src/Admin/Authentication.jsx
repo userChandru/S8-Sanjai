@@ -38,7 +38,7 @@ const Authentication = () => {
   const handleSubmit = (values, { setSubmitting, setErrors }) => {
     if (values.email === "chandru@gmail.com" && values.password === "asdfghjk") {
       localStorage.setItem("adminAuth", "true");
-      navigate("/dashboard");
+      navigate("/admin/dashboard");
     } else {
       setErrors({ email: "Invalid credentials", password: "Invalid credentials" });
     }
