@@ -10,6 +10,9 @@ import Authentication from "./Admin/Authentication";
 import Product from "./Home/Product";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import EditProduct from "./Home/EditProduct";
+import AdminDashboard from "./Admin/Pages/AdminDashboard";
+import AdminBank from "./Admin/Pages/AdminBank";
+import AdminLayout from "./Admin/Layout/AdminLayout";
 
 const App = () => {
   return (
@@ -19,6 +22,8 @@ const App = () => {
           <Routes>
             <Route index element={<AuthPage />} />
             <Route path="/auth" element={<Authentication />} />
+            
+            {/* Student Routes */}
             <Route element={<HomePage />}>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/marketplace" element={<Marketplace />} />
@@ -27,6 +32,13 @@ const App = () => {
               <Route path="/edit-product" element={<EditProduct />} />
               <Route path="/name" element={<Product />} />
             </Route>
+
+            {/* Admin Routes */}
+            <Route element={<AdminLayout />}>
+              <Route path="/admin/dashboard" element={<AdminDashboard />} />
+              <Route path="/admin/bank" element={<AdminBank />} />
+            </Route>
+
             <Route path="*" element={<ErrorPage />} />
           </Routes>
         </BrowserRouter>
