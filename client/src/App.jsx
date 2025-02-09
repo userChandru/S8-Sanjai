@@ -13,36 +13,59 @@ import EditProduct from "./Home/EditProduct";
 import AdminDashboard from "./Admin/Pages/AdminDashboard";
 import AdminBank from "./Admin/Pages/AdminBank";
 import AdminLayout from "./Admin/Layout/AdminLayout";
+import { CartProvider } from './context/CartContext';
+import { Toaster } from 'react-hot-toast';
 
 const App = () => {
   return (
     <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
-      <div className="font-normal text-gray-800 bg-gray-100 min-h-screen max-w-screen *:min-h-screen *:max-w-screen">
-        <BrowserRouter>
-          <Routes>
-            <Route index element={<AuthPage />} />
-            <Route path="/auth" element={<Authentication />} />
-            
-            {/* Student Routes */}
-            <Route element={<HomePage />}>
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/marketplace" element={<Marketplace />} />
-              <Route path="/bank" element={<Bank />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/edit-product" element={<EditProduct />} />
-              <Route path="/name" element={<Product />} />
-            </Route>
+      <CartProvider>
+        <div className="font-normal text-gray-800 bg-gray-100 min-h-screen max-w-screen *:min-h-screen *:max-w-screen">
+          <Toaster 
+            position="top-right"
+            toastOptions={{
+              success: {
+                style: {
+                  background: '#10B981',
+                  color: 'white',
+                },
+                duration: 3000,
+              },
+              error: {
+                style: {
+                  background: '#EF4444',
+                  color: 'white',
+                },
+                duration: 3000,
+              },
+            }}
+          />
+          <BrowserRouter>
+            <Routes>
+              <Route index element={<AuthPage />} />
+              <Route path="/auth" element={<Authentication />} />
+              
+              {/* Student Routes */}
+              <Route element={<HomePage />}>
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/marketplace" element={<Marketplace />} />
+                <Route path="/bank" element={<Bank />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/edit-product" element={<EditProduct />} />
+                <Route path="/name" element={<Product />} />
+              </Route>
 
-            {/* Admin Routes */}
-            <Route element={<AdminLayout />}>
-              <Route path="/admin/dashboard" element={<AdminDashboard />} />
-              <Route path="/admin/bank" element={<AdminBank />} />
-            </Route>
+              {/* Admin Routes */}
+              <Route element={<AdminLayout />}>
+                <Route path="/admin/dashboard" element={<AdminDashboard />} />
+                <Route path="/admin/bank" element={<AdminBank />} />
+              </Route>
 
-            <Route path="*" element={<ErrorPage />} />
-          </Routes>
-        </BrowserRouter>
-      </div>
+              <Route path="*" element={<ErrorPage />} />
+            </Routes>
+          </BrowserRouter>
+        </div>
+      </CartProvider>
     </GoogleOAuthProvider>
   );
 };

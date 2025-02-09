@@ -8,9 +8,24 @@ import avatar from "../assets/img/avatar.png";
 import { Link } from "react-router-dom";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { TbCurrencyRupee } from "react-icons/tb";
+import { useCart } from '../context/CartContext';
+import { RiShoppingBag3Fill } from "react-icons/ri";
+import toast from 'react-hot-toast';
 
 const Marketplace = () => {
   const [selectedMarket, setSelectedMarket] = useState(null);
+  const { addToCart } = useCart();
+
+  const handleAddToCart = (product) => {
+    addToCart(product);
+    toast.success(`Added ${product.name} to cart!`, {
+      icon: '🛒',
+      style: {
+        background: '#10B981',
+        color: 'white',
+      },
+    });
+  };
 
   return (
     <div>
@@ -29,7 +44,7 @@ const Marketplace = () => {
             Database?.map((market, index) => (
               <div
                 onClick={() => setSelectedMarket(market)}
-                className=" cursor-pointer bg-gray-100 rounded-xl p-2"
+                className=" cursor-pointer bg-gray-100 rounded-xl p-2 transition-all duration-300 hover:shadow-xl hover:scale-[1.02] hover:bg-white"
                 key={index}
               >
                 <div
@@ -50,7 +65,7 @@ const Marketplace = () => {
                     <p className=" font-semibold">250</p>
                   </div>
                 </div>
-                <div className=" space-x-2 my-2 flex w-full items-center">
+                {/* <div className=" space-x-2 my-2 flex w-full items-center">
                   <p className=" flex-1 flex items-center justify-center  space-x-2  text-sky-600 bg-sky-100 px-2 p-1 rounded-xl text-sm font-semibold">
                     <HiPercentBadge className=" size-5" />
                     <span>20% Offer</span>
@@ -59,7 +74,7 @@ const Marketplace = () => {
                     <MdInventory />
                     <span>20 Stock left</span>
                   </p>
-                </div>
+                </div> */}
                 <div className=" flex items-center space-x-3">
                   <div className=" flex ">
                     <img
@@ -97,7 +112,10 @@ const Marketplace = () => {
           </div>
           <div className="grid grid-cols-3 gap-5">
             {selectedMarket.products.map((product, index) => (
-              <div key={index} className="bg-gray-100 rounded-xl p-3 flex flex-col h-auto">
+              <div 
+                key={index} 
+                className="relative bg-gray-100 p-2 rounded-xl transition-all duration-300 hover:shadow-xl hover:scale-[1.02] hover:bg-white"
+              >
                 {/* Image Section - Reduced height */}
                 <div 
                   className="bg-white h-32 w-full rounded-xl bg-cover bg-center"
@@ -137,6 +155,18 @@ const Marketplace = () => {
                       </p>
                     </div>
                   </div>
+                </div>
+                <div className="rounded-xl flex items-center justify-center space-x-4 text-white p-2 text-center bg-black">
+                  <button 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleAddToCart(product);
+                    }}
+                    className="font-semibold flex items-center space-x-2"
+                  >
+                    <span>Add to cart</span>
+                    <RiShoppingBag3Fill className="size-5" />
+                  </button>
                 </div>
               </div>
             ))}

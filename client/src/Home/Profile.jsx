@@ -29,10 +29,13 @@ const Profile = () => {
         <p>Sold</p> */}{" "}
       </div>
       <div className=" pb-10 grid grid-cols-3 px-10 gap-10">
-        {Productdata &&
+        {Productdata && 
           Productdata.map((pro) => (
-            <div className=" relative bg-gray-100 p-2 rounded-xl">
-              <div className="  h-40 bg-white rounded-xl"></div>
+            <div className="relative bg-gray-100 p-2 rounded-xl transition-all duration-300 hover:shadow-xl hover:scale-[1.02] hover:bg-white">
+              <div 
+                className="h-40 bg-white rounded-xl bg-cover bg-center"
+                style={{ backgroundImage: `url(${pro.image})` }}
+              ></div>
               <div className=" my-2  text-xl items-center flex justify-between">
                 <p className="  font-semibold">{pro.name}</p>
                 <p className=" flex items-center  justify-center  mr-3 font-semibold">

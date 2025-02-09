@@ -22,7 +22,7 @@ const Product = () => {
       <div className=" py-10 grid grid-cols-3 px-10 gap-10">
         {Productdata &&
           Productdata.map((pro) => (
-            <div className=" relative bg-gray-100 p-2 rounded-xl">
+            <div className="relative bg-gray-100 p-2 rounded-xl transition-all duration-300 hover:shadow-xl hover:scale-[1.02] hover:bg-white">
               <div className="  h-40 bg-white rounded-xl"></div>
               <div className=" my-2  text-xl items-center flex justify-between">
                 <p className="  font-semibold">{pro.name}</p>
