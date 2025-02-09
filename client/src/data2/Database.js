@@ -62,22 +62,7 @@ export default [
     rating: 4.5,
     location: "Chennai, Tamil Nadu",
     partnerSince: "2020",
-    // products: [
-    //   {
-    //     id: 1,
-    //     name: "Rose Bouquet",
-    //     price: 599,
-    //     stock: 25,
-    //     discount: 20
-    //   },
-    //   {
-    //     id: 2,
-    //     name: "Wedding Decoration Set",
-    //     price: 1999,
-    //     stock: 10,
-    //     discount: 15
-    //   }
-    // ]
+
   },
   {
     name: "Aditi Sharma",

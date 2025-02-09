@@ -3,7 +3,7 @@ export default [
     name: "Tomatoes",
     price: 70,
     quantity: 500,
-    image: "https://images.unsplash.com/photo-1546750670-50d46a5ad447",
+    image: "https://img.freepik.com/free-photo/fresh-raw-red-tomatoes_114579-10972.jpg",
     description: "Fresh, ripe tomatoes perfect for cooking and salads"
   },
   {
