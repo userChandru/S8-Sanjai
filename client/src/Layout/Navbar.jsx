@@ -17,7 +17,6 @@ import { BiLogOut } from "react-icons/bi";
 
 import { SiGoogleadsense } from "react-icons/si";
 
-import avatar from "../assets/img/avatar.png";
 import { useLocation } from "react-router-dom";
 
 const Navbar = () => {
@@ -76,7 +75,7 @@ const Navbar = () => {
         ))}
       </div>
       <div className=" bg-gray-900 text-white p-2 rounded-full flex  items-center justify-center">
-        <BiLogOut  className="  size-7 "/>
+        <BiLogOut className="  size-7 " />
       </div>
     </div>
   );
