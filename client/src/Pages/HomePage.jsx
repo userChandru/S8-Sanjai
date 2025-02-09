@@ -23,6 +23,10 @@ const HomePage = () => {
       name: "Company",
       link: "/profile",
     },
+    {
+      name: "Company",
+      link: "/edit-product",
+    },
   ];
 
   const currentNavItem = Navitems.find(

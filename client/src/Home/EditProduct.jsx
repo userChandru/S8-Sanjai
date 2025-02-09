@@ -6,10 +6,10 @@ import ButtonComponent from "../Components/ButtonComponent";
 const EditProduct = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const product = location.state?.product;
+  const product = location.state.product;
 
   const [formData, setFormData] = useState({
-    price: product?.price || "",
+    price: product.price || "",
     discount: "20", // Default discount value
     stock: "20", // Default stock value
   });
@@ -35,13 +35,16 @@ const EditProduct = () => {
     <div className="p-10">
       <div className="bg-white rounded-xl p-8 max-w-2xl mx-auto">
         <h2 className="text-3xl font-semibold mb-8">Edit Product</h2>
-        
+
         <div className="flex gap-8 mb-8">
           <div className="w-1/3">
-            <div className="bg-gray-100 rounded-xl h-40 mb-4"></div>
+            <img
+              src={product.image}
+              className="bg-gray-100 rounded-xl h-40 mb-4 object-cover"
+            />
             <p className="text-xl font-semibold">{product.name}</p>
           </div>
-          
+
           <form onSubmit={handleSubmit} className="flex-1 space-y-6">
             <div className="space-y-2">
               <label className="text-lg font-semibold block">Price (₹)</label>
@@ -59,7 +62,9 @@ const EditProduct = () => {
             </div>
 
             <div className="space-y-2">
-              <label className="text-lg font-semibold block">Discount (%)</label>
+              <label className="text-lg font-semibold block">
+                Discount (%)
+              </label>
               <input
                 type="number"
                 name="discount"
@@ -83,10 +88,7 @@ const EditProduct = () => {
             </div>
 
             <div className="flex gap-4 pt-4">
-              <ButtonComponent
-                type="submit"
-                name="Save Changes"
-              />
+              <ButtonComponent type="submit" name="Save Changes" />
               <button
                 type="button"
                 onClick={() => navigate("/profile")}
@@ -102,4 +104,4 @@ const EditProduct = () => {
   );
 };
 
-export default EditProduct; 
+export default EditProduct;
