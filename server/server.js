@@ -7,7 +7,10 @@ const auth = require('./middleware/auth');
 const marketRoutes = require('./routes/marketRoutes');
 const cartRoutes = require('./routes/cartRoutes');
 const productRoutes = require('./routes/product.routes');
-const userRoutes = require('./routes/user.routes');
+const userRoutes = require('./routes/userRoutes');
+const bankProductRoutes = require('./routes/bankProductRoutes');
+const vendorProductRoutes = require('./routes/vendorProductRoutes');
+const purchaseHistoryRoutes = require('./routes/purchaseHistoryRoutes');
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -24,6 +27,9 @@ app.use('/api/markets', marketRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/cart', auth, cartRoutes);
+app.use('/api/bank-products', bankProductRoutes);
+app.use('/api/vendor-products', vendorProductRoutes);
+app.use('/api/purchases', purchaseHistoryRoutes);
 
 // Health check endpoint
 app.get("/health", (req, res) => {
