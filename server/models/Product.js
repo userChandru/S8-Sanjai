@@ -3,44 +3,42 @@ const mongoose = require('mongoose');
 const productSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true,
-        trim: true
+        required: true
     },
     description: {
         type: String,
         required: true
     },
-    price: {
+    bought_price: {
         type: Number,
-        required: true,
-        min: 0
-    },
-    image: {
-        type: String,
         required: true
     },
-    market: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Market',
-        required: true
-    },
-    stock: {
+    selling_price: {
         type: Number,
-        required: true,
-        min: 0,
-        default: 0
-    },
-    isAvailable: {
-        type: Boolean,
-        default: true
+        required: true
     },
     quantity: {
         type: Number,
         required: true
     },
-    createdAt: {
-        type: Date,
-        default: Date.now
+    image: {
+        type: String,
+        required: true
+    },
+    owner_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
+    original_bank_product: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'BankProduct',
+        required: true
+    },
+    status: {
+        type: String,
+        enum: ['active', 'inactive'],
+        default: 'active'
     }
 }, {
     timestamps: true
