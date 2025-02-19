@@ -1,6 +1,5 @@
 export default [
   {
-    
     name: "Sanjai G",
     email: "sanjai@gmail.com",
     bussinessName: "Rootz Prvt Limited",

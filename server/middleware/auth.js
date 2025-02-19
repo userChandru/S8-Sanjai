@@ -11,16 +11,17 @@ const auth = async (req, res, next) => {
 
         const ticket = await client.verifyIdToken({
             idToken: token,
-            audience: process.env.GOOGLE_CLIENT_ID,
+            audience: process.env.GOOGLE_CLIENT_ID
         });
 
         const payload = ticket.getPayload();
         req.user = {
             email: payload.email,
             name: payload.name,
-            picture: payload.picture
+            picture: payload.picture,
+            _id: payload._id
         };
-
+        
         next();
     } catch (error) {
         res.status(401).json({ message: 'Authentication failed' });

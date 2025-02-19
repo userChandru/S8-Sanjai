@@ -1,34 +1,29 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-    user_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        auto: true,
-        required: true
-    },
-    user_name: {
+    name: {
         type: String,
         required: true
     },
-    user_email: {
+    email: {
         type: String,
         required: true,
         unique: true
     },
-    user_role: {
+    role: {
         type: String,
         enum: ['vendor', 'bank', 'admin'],
         required: true
     },
-    user_avatar: {
-        type: String, // URL
+    avatar: {
+        type: String,
         required: true
     },
-    join_date: {
+    joinDate: {
         type: Date,
         default: Date.now
     },
-    last_active: {
+    lastActive: {
         type: Date,
         default: Date.now
     },
@@ -41,4 +36,4 @@ const userSchema = new mongoose.Schema({
     timestamps: true
 });
 
-module.exports = mongoose.model('User', userSchema); 
+module.exports = mongoose.models.User || mongoose.model('User', userSchema); 
