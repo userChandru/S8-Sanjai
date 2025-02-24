@@ -1,60 +1,48 @@
 const mongoose = require('mongoose');
 
-const purchaseItemSchema = new mongoose.Schema({
-    prod_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true
-    },
-    prod_name: {
-        type: String,
-        required: true
-    },
-    quantity: {
-        type: Number,
-        required: true,
-        min: 1
-    },
-    price: {
-        type: Number,
-        required: true,
-        min: 0
-    },
-    purchased_offer: {
-        type: Number,
-        default: 0,
-        min: 0,
-        max: 100
-    }
-});
-
 const purchaseHistorySchema = new mongoose.Schema({
-    purchase_id: {
+    buyer: {
         type: mongoose.Schema.Types.ObjectId,
-        auto: true,
+        ref: 'Business',
         required: true
     },
-    buyer_id: {
+    seller: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'Business',
         required: true
     },
-    seller_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
-    },
+    purchased_products: [{
+        product: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Product',
+            required: true
+        },
+        quantity: {
+            type: Number,
+            required: true
+        },
+        original_price: {  // Price before offer
+            type: Number,
+            required: true
+        },
+        final_price: {  // Price after offer is applied
+            type: Number,
+            required: true
+        }
+    }],
     total_price: {
         type: Number,
-        required: true,
-        min: 0
+        required: true
     },
     purchase_date: {
         type: Date,
         default: Date.now
-    },
-    items: [purchaseItemSchema]
+    }
 }, {
     timestamps: true
 });
 
-module.exports = mongoose.model('PurchaseHistory', purchaseHistorySchema); 
+// Index for performance optimization
+purchaseHistorySchema.index({ buyer: 1, seller: 1, purchase_date: -1 });
+
+module.exports = mongoose.model('PurchaseHistory', purchaseHistorySchema);

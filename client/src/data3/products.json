@@ -1,0 +1,342 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "last_updated": "2024-03-19",
+    "description": "Product data transformed according to new schema"
+  },
+  "products": [
+    {
+      "product_name": "Software Development",
+      "product_description": "Custom software development services for businesses",
+      "product_image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c",
+      "product_type": "Service",
+      "product_category": "Technology",
+      "base_price": 50000,
+      "min_price": 40000
+    },
+    {
+      "product_name": "IT Consulting",
+      "product_description": "Expert IT consulting for digital transformation",
+      "product_image": "https://images.unsplash.com/photo-1553877522-43269d4ea984",
+      "product_type": "Service",
+      "product_category": "Technology",
+      "base_price": 40000,
+      "min_price": 32000
+    },
+    {
+      "product_name": "Web Development",
+      "product_description": "Professional web development services",
+      "product_image": "https://images.unsplash.com/photo-1547658719-da2b51169166",
+      "product_type": "Service",
+      "product_category": "Technology",
+      "base_price": 35000,
+      "min_price": 28000
+    },
+    {
+      "product_name": "Mobile App Development",
+      "product_description": "Custom mobile app development for iOS and Android",
+      "product_image": "https://images.unsplash.com/photo-1522199755839-a2bacb67c546",
+      "product_type": "Service",
+      "product_category": "Technology",
+      "base_price": 45000,
+      "min_price": 36000
+    },
+    {
+      "product_name": "Cloud Services",
+      "product_description": "Cloud infrastructure and management services",
+      "product_image": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8",
+      "product_type": "Service",
+      "product_category": "Technology",
+      "base_price": 25000,
+      "min_price": 20000
+    },
+    {
+      "product_name": "Tomatoes",
+      "product_description": "Fresh, ripe tomatoes perfect for cooking and salads",
+      "product_image": "https://images.unsplash.com/photo-1561136594-7f68413baa99",
+      "product_type": "Product",
+      "product_category": "Grocery",
+      "base_price": 70,
+      "min_price": 56
+    },
+    {
+      "product_name": "Onions",
+      "product_description": "Premium quality onions for your daily cooking needs",
+      "product_image": "https://images.unsplash.com/photo-1618512496248-a07fe83aa8cb",
+      "product_type": "Product",
+      "product_category": "Grocery",
+      "base_price": 50,
+      "min_price": 40
+    },
+    {
+      "product_name": "Cucumbers",
+      "product_description": "Crisp and fresh cucumbers ideal for salads",
+      "product_image": "https://images.unsplash.com/photo-1604977042946-1eecc30f269e",
+      "product_type": "Product",
+      "product_category": "Grocery",
+      "base_price": 60,
+      "min_price": 48
+    },
+    {
+      "product_name": "Bananas",
+      "product_description": "Sweet and ripe bananas perfect for snacking",
+      "product_image": "https://images.unsplash.com/photo-1603833665858-e61d17a86224",
+      "product_type": "Product",
+      "product_category": "Grocery",
+      "base_price": 40,
+      "min_price": 32
+    },
+    {
+      "product_name": "Apples",
+      "product_description": "Fresh and juicy apples from local orchards",
+      "product_image": "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6",
+      "product_type": "Product",
+      "product_category": "Grocery",
+      "base_price": 55,
+      "min_price": 44
+    },
+    {
+      "product_name": "Potatoes",
+      "product_description": "Premium quality potatoes for all your cooking needs",
+      "product_image": "https://images.unsplash.com/photo-1518977676601-b53f82aba655",
+      "product_type": "Product",
+      "product_category": "Grocery",
+      "base_price": 45,
+      "min_price": 36
+    },
+    {
+      "product_name": "Carrots",
+      "product_description": "Fresh carrots rich in vitamins and minerals",
+      "product_image": "https://images.unsplash.com/photo-1598170845058-32b9d6a5da37",
+      "product_type": "Product",
+      "product_category": "Grocery",
+      "base_price": 35,
+      "min_price": 28
+    },
+    {
+      "product_name": "Pain Relievers",
+      "product_description": "Effective pain relief medications",
+      "product_image": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae",
+      "product_type": "Product",
+      "product_category": "Healthcare",
+      "base_price": 200,
+      "min_price": 160
+    },
+    {
+      "product_name": "Vitamin Supplements",
+      "product_description": "Essential vitamin supplements for daily health",
+      "product_image": "https://images.unsplash.com/photo-1577174881658-0f30ed549adc",
+      "product_type": "Product",
+      "product_category": "Healthcare",
+      "base_price": 350,
+      "min_price": 280
+    },
+    {
+      "product_name": "First Aid Kit",
+      "product_description": "Complete first aid kit for emergencies",
+      "product_image": "https://images.unsplash.com/photo-1603398938378-e54eab446dde",
+      "product_type": "Product",
+      "product_category": "Healthcare",
+      "base_price": 450,
+      "min_price": 360
+    },
+    {
+      "product_name": "Immunity Boosters",
+      "product_description": "Natural immunity boosting supplements",
+      "product_image": "https://images.unsplash.com/photo-1584017911766-d451b3d0e843",
+      "product_type": "Product",
+      "product_category": "Healthcare",
+      "base_price": 300,
+      "min_price": 240
+    },
+    {
+      "product_name": "Skincare Products",
+      "product_description": "Premium skincare products for all skin types",
+      "product_image": "https://images.unsplash.com/photo-1556228578-0d85b1a4d571",
+      "product_type": "Product",
+      "product_category": "Healthcare",
+      "base_price": 250,
+      "min_price": 200
+    },
+    {
+      "product_name": "Cotton Shirts",
+      "product_description": "Premium cotton shirts for everyday wear",
+      "product_image": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c",
+      "product_type": "Product",
+      "product_category": "Clothing",
+      "base_price": 800,
+      "min_price": 640
+    },
+    {
+      "product_name": "Denim Jeans",
+      "product_description": "Stylish and comfortable denim jeans",
+      "product_image": "https://images.unsplash.com/photo-1542272604-787c3835535d",
+      "product_type": "Product",
+      "product_category": "Clothing",
+      "base_price": 1200,
+      "min_price": 960
+    },
+    {
+      "product_name": "Silk Sarees",
+      "product_description": "Traditional silk sarees with modern designs",
+      "product_image": "https://images.unsplash.com/photo-1610030469983-98e550d6193c",
+      "product_type": "Product",
+      "product_category": "Clothing",
+      "base_price": 5000,
+      "min_price": 4000
+    },
+    {
+      "product_name": "Cotton Kurtis",
+      "product_description": "Comfortable and stylish cotton kurtis",
+      "product_image": "https://images.unsplash.com/photo-1612722432474-b971cdcea546",
+      "product_type": "Product",
+      "product_category": "Clothing",
+      "base_price": 600,
+      "min_price": 480
+    },
+    {
+      "product_name": "Formal Trousers",
+      "product_description": "Professional formal trousers for office wear",
+      "product_image": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35",
+      "product_type": "Product",
+      "product_category": "Clothing",
+      "base_price": 900,
+      "min_price": 720
+    },
+    {
+      "product_name": "Chocolate Cake",
+      "product_description": "Rich and moist chocolate cake",
+      "product_image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587",
+      "product_type": "Product",
+      "product_category": "Bakery",
+      "base_price": 500,
+      "min_price": 400
+    },
+    {
+      "product_name": "Croissants",
+      "product_description": "Freshly baked buttery croissants",
+      "product_image": "https://images.unsplash.com/photo-1555507036-ab1f4038808a",
+      "product_type": "Product",
+      "product_category": "Bakery",
+      "base_price": 50,
+      "min_price": 40
+    },
+    {
+      "product_name": "Fruit Tarts",
+      "product_description": "Delicious fruit tarts with fresh seasonal fruits",
+      "product_image": "https://images.unsplash.com/photo-1488477181946-6428a0291777",
+      "product_type": "Product",
+      "product_category": "Bakery",
+      "base_price": 150,
+      "min_price": 120
+    },
+    {
+      "product_name": "Cupcakes",
+      "product_description": "Assorted flavored cupcakes",
+      "product_image": "https://images.unsplash.com/photo-1486427944299-d1955d23e34d",
+      "product_type": "Product",
+      "product_category": "Bakery",
+      "base_price": 80,
+      "min_price": 64
+    },
+    {
+      "product_name": "Bread Loaf",
+      "product_description": "Freshly baked bread loaves",
+      "product_image": "https://images.unsplash.com/photo-1549931319-a545dcf3bc73",
+      "product_type": "Product",
+      "product_category": "Bakery",
+      "base_price": 60,
+      "min_price": 48
+    },
+    {
+      "product_name": "Car Batteries",
+      "product_description": "Long-lasting car batteries",
+      "product_image": "https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d",
+      "product_type": "Product",
+      "product_category": "Automotive",
+      "base_price": 5000,
+      "min_price": 4000
+    },
+    {
+      "product_name": "Engine Oil",
+      "product_description": "High-quality engine oil for all vehicles",
+      "product_image": "https://images.unsplash.com/photo-1635764749419-b1a0e2ea0cdf",
+      "product_type": "Product",
+      "product_category": "Automotive",
+      "base_price": 1200,
+      "min_price": 960
+    },
+    {
+      "product_name": "Brake Pads",
+      "product_description": "Reliable brake pads for safe driving",
+      "product_image": "https://images.unsplash.com/photo-1600191763437-4b7f2cae081c",
+      "product_type": "Product",
+      "product_category": "Automotive",
+      "base_price": 2000,
+      "min_price": 1600
+    },
+    {
+      "product_name": "Air Filters",
+      "product_description": "High-performance air filters",
+      "product_image": "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3",
+      "product_type": "Product",
+      "product_category": "Automotive",
+      "base_price": 800,
+      "min_price": 640
+    },
+    {
+      "product_name": "Spark Plugs",
+      "product_description": "Premium quality spark plugs",
+      "product_image": "https://images.unsplash.com/photo-1586190848861-99aa4a171e90",
+      "product_type": "Product",
+      "product_category": "Automotive",
+      "base_price": 300,
+      "min_price": 240
+    },
+    {
+      "product_name": "Wooden Chairs",
+      "product_description": "Elegant wooden chairs for your dining room",
+      "product_image": "https://images.unsplash.com/photo-1503602642458-232111445657",
+      "product_type": "Product",
+      "product_category": "Furniture",
+      "base_price": 1500,
+      "min_price": 1200
+    },
+    {
+      "product_name": "Dining Tables",
+      "product_description": "Premium quality dining tables",
+      "product_image": "https://images.unsplash.com/photo-1577140917170-285929fb55b7",
+      "product_type": "Product",
+      "product_category": "Furniture",
+      "base_price": 7000,
+      "min_price": 5600
+    },
+    {
+      "product_name": "Sofa Set",
+      "product_description": "Comfortable and stylish sofa sets",
+      "product_image": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc",
+      "product_type": "Product",
+      "product_category": "Furniture",
+      "base_price": 15000,
+      "min_price": 12000
+    },
+    {
+      "product_name": "Coffee Tables",
+      "product_description": "Modern coffee tables for your living room",
+      "product_image": "https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc",
+      "product_type": "Product",
+      "product_category": "Furniture",
+      "base_price": 3000,
+      "min_price": 2400
+    },
+    {
+      "product_name": "Bed Frames",
+      "product_description": "Sturdy and elegant bed frames",
+      "product_image": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85",
+      "product_type": "Product",
+      "product_category": "Furniture",
+      "base_price": 9000,
+      "min_price": 7200
+    }
+  ]
+} 

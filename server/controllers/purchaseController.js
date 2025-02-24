@@ -1,6 +1,7 @@
 const BankProduct = require('../models/BankProduct');
 const Product = require('../models/Product');
 const User = require('../models/User');
+const PurchaseHistory = require('../models/PurchaseHistory');
 
 exports.purchaseFromBank = async (req, res) => {
     try {
@@ -33,6 +34,21 @@ exports.purchaseFromBank = async (req, res) => {
         // Update bank product quantity
         bankProduct.quantity -= quantity;
         await bankProduct.save();
+
+        // Create purchase history
+        const newPurchaseHistory = new PurchaseHistory({
+            buyer_id: buyer_id,
+            seller_id: bankProduct.bank_id,
+            total_price: bankProduct.bank_prod_price * quantity,
+            items: [{
+                prod_id: bank_product_id,
+                prod_name: bankProduct.name,
+                quantity: quantity,
+                price: bankProduct.bank_prod_price,
+                purchased_offer: 0 // Bank products have no offers
+            }]
+        });
+        await newPurchaseHistory.save();
 
         // Return the newly created product
         res.status(201).json({

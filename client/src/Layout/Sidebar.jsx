@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import avatar from "../assets/img/Avatar.png";
 // import Userdata from "../data/Userdata";
 import Userdata from "../data2/Userdata";

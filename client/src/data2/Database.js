@@ -8,7 +8,7 @@ export default [
       {
         name: "Tomatoes",
         price: 70,
-        quantity: 500,
+        quantity: 5,
         image: "https://images.unsplash.com/photo-1561136594-7f68413baa99",
         description: "Fresh, ripe tomatoes perfect for cooking and salads"
       },
