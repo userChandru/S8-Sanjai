@@ -21,7 +21,7 @@ const productSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    image: {
+    product_category: {
         type: String,
         required: true
     },
@@ -44,4 +44,12 @@ const productSchema = new mongoose.Schema({
     timestamps: true
 });
 
-module.exports = mongoose.model('Product', productSchema); 
+// Validation to ensure base_price >= min_price
+productSchema.pre('save', function (next) {
+    if (this.base_price < this.min_price) {
+        return next(new Error('base_price cannot be less than min_price'));
+    }
+    next();
+});
+
+module.exports = mongoose.model('Product', productSchema);

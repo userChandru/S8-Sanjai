@@ -1,0 +1,180 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "last_updated": "2024-03-19",
+    "description": "Inventory data transformed according to new schema"
+  },
+  "inventories": [
+    {
+      "business_email": "sanjai@gmail.com",
+      "products": [
+        {
+          "product_name": "Tomatoes",
+          "price": 70,
+          "quantity": 150,
+          "offer": 0,
+          "bought_price": 49,
+          "for_sale": false
+        },
+        {
+          "product_name": "Onions",
+          "price": 50,
+          "quantity": 200,
+          "offer": 0,
+          "bought_price": 35,
+          "for_sale": false
+        },
+        {
+          "product_name": "Cucumbers",
+          "price": 60,
+          "quantity": 100,
+          "offer": 0,
+          "bought_price": 42,
+          "for_sale": false
+        },
+        {
+          "product_name": "Bananas",
+          "price": 40,
+          "quantity": 300,
+          "offer": 0,
+          "bought_price": 28,
+          "for_sale": false
+        },
+        {
+          "product_name": "Apples",
+          "price": 55,
+          "quantity": 250,
+          "offer": 0,
+          "bought_price": 38.5,
+          "for_sale": false
+        }
+      ]
+    },
+    {
+      "business_email": "aditi@gmail.com",
+      "products": [
+        {
+          "product_name": "Software Development",
+          "price": 50000,
+          "quantity": 5,
+          "offer": 0,
+          "bought_price": 35000,
+          "for_sale": false
+        },
+        {
+          "product_name": "IT Consulting",
+          "price": 40000,
+          "quantity": 7,
+          "offer": 0,
+          "bought_price": 28000,
+          "for_sale": false
+        }
+      ]
+    },
+    {
+      "business_email": "rohan@gmail.com",
+      "products": [
+        {
+          "product_name": "Cotton Shirts",
+          "price": 800,
+          "quantity": 300,
+          "offer": 0,
+          "bought_price": 560,
+          "for_sale": false
+        },
+        {
+          "product_name": "Denim Jeans",
+          "price": 1200,
+          "quantity": 200,
+          "offer": 0,
+          "bought_price": 840,
+          "for_sale": false
+        }
+      ]
+    },
+    {
+      "business_email": "priya@gmail.com",
+      "products": [
+        {
+          "product_name": "Pain Relievers",
+          "price": 200,
+          "quantity": 500,
+          "offer": 0,
+          "bought_price": 140,
+          "for_sale": false
+        },
+        {
+          "product_name": "Vitamin Supplements",
+          "price": 350,
+          "quantity": 400,
+          "offer": 0,
+          "bought_price": 245,
+          "for_sale": false
+        }
+      ]
+    },
+    {
+      "business_email": "arjun@gmail.com",
+      "products": [
+        {
+          "product_name": "Chocolate Cake",
+          "price": 500,
+          "quantity": 100,
+          "offer": 0,
+          "bought_price": 350,
+          "for_sale": false
+        },
+        {
+          "product_name": "Croissants",
+          "price": 50,
+          "quantity": 600,
+          "offer": 0,
+          "bought_price": 35,
+          "for_sale": false
+        }
+      ]
+    },
+    {
+      "business_email": "vikram@gmail.com",
+      "products": [
+        {
+          "product_name": "Car Batteries",
+          "price": 5000,
+          "quantity": 200,
+          "offer": 0,
+          "bought_price": 3500,
+          "for_sale": false
+        },
+        {
+          "product_name": "Engine Oil",
+          "price": 1200,
+          "quantity": 500,
+          "offer": 0,
+          "bought_price": 840,
+          "for_sale": false
+        }
+      ]
+    },
+    {
+      "business_email": "neha@gmail.com",
+      "products": [
+        {
+          "product_name": "Wooden Chairs",
+          "price": 1500,
+          "quantity": 100,
+          "offer": 0,
+          "bought_price": 1050,
+          "for_sale": false
+        },
+        {
+          "product_name": "Dining Tables",
+          "price": 7000,
+          "quantity": 50,
+          "offer": 0,
+          "bought_price": 4900,
+          "for_sale": false
+        }
+      ]
+    }
+  ]
+} 
