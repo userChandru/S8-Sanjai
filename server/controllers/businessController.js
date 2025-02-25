@@ -1,4 +1,5 @@
 const Business = require('../models/Business');
+const Inventory = require('../models/Inventory');
 
 /**
  * Create new business
@@ -31,18 +32,51 @@ exports.createBusiness = async (req, res) => {
             location
         } = req.body;
 
-        const business = await Business.create({
-            owner: req.user._id,
-            business_name,
-            business_sector,
-            capital,
-            annual_turnover,
-            business_image,
-            location,
-            collaborators: [] // Initialize empty collaborators array
-        });
+        // Create business and inventory in a transaction
+        const session = await Business.startSession();
+        session.startTransaction();
 
-        res.status(201).json(business);
+        try {
+            // First create the business
+            const business = await Business.create([{
+                owner: req.user._id,
+                business_name,
+                business_sector,
+                capital,
+                annual_turnover,
+                business_image,
+                location,
+                collaborators: []
+            }], { session });
+
+            // Then create the inventory with business reference
+            const inventory = await Inventory.create([{
+                business: business[0]._id,  // Set business reference
+                products: []  // Empty products array initially
+            }], { session });
+
+            // Update business with inventory reference
+            await Business.findByIdAndUpdate(
+                business[0]._id,
+                { inventory_id: inventory[0]._id },
+                { session }
+            );
+
+            await session.commitTransaction();
+            
+            // Return the business with populated inventory
+            const populatedBusiness = await Business.findById(business[0]._id)
+                .populate('inventory_id');
+                
+            res.status(201).json(populatedBusiness);
+
+        } catch (error) {
+            await session.abortTransaction();
+            throw error;
+        } finally {
+            session.endSession();
+        }
+
     } catch (error) {
         console.error('Create business error:', error);
         res.status(500).json({ message: error.message });
@@ -158,6 +192,16 @@ exports.addCollaborator = async (req, res) => {
 
         await business.save();
         res.json(business);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+// Add this controller method
+exports.getBusinessesByOwner = async (req, res) => {
+    try {
+        const businesses = await Business.find({ owner: req.params.userId });
+        res.json(businesses);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

@@ -11,7 +11,7 @@
         {
           "product_name": "Tomatoes",
           "price": 70,
-          "quantity": 150,
+          "quantity": 5,
           "offer": 0,
           "bought_price": 49,
           "for_sale": false
@@ -19,7 +19,7 @@
         {
           "product_name": "Onions",
           "price": 50,
-          "quantity": 200,
+          "quantity": 300,
           "offer": 0,
           "bought_price": 35,
           "for_sale": false
@@ -27,7 +27,7 @@
         {
           "product_name": "Cucumbers",
           "price": 60,
-          "quantity": 100,
+          "quantity": 400,
           "offer": 0,
           "bought_price": 42,
           "for_sale": false
@@ -35,7 +35,7 @@
         {
           "product_name": "Bananas",
           "price": 40,
-          "quantity": 300,
+          "quantity": 600,
           "offer": 0,
           "bought_price": 28,
           "for_sale": false
@@ -43,9 +43,25 @@
         {
           "product_name": "Apples",
           "price": 55,
-          "quantity": 250,
+          "quantity": 700,
           "offer": 0,
           "bought_price": 38.5,
+          "for_sale": false
+        },
+        {
+          "product_name": "Potatoes",
+          "price": 45,
+          "quantity": 800,
+          "offer": 0,
+          "bought_price": 35,
+          "for_sale": false
+        },
+        {
+          "product_name": "Carrots",
+          "price": 35,
+          "quantity": 450,
+          "offer": 0,
+          "bought_price": 24,
           "for_sale": false
         }
       ]
@@ -68,6 +84,30 @@
           "offer": 0,
           "bought_price": 28000,
           "for_sale": false
+        },
+        {
+          "product_name": "Web Development",
+          "price": 35000,
+          "quantity": 10,
+          "offer": 0,
+          "bought_price": 24500,
+          "for_sale": false
+        },
+        {
+          "product_name": "Mobile App Development",
+          "price": 45000,
+          "quantity": 8,
+          "offer": 0,
+          "bought_price": 31500,
+          "for_sale": false
+        },
+        {
+          "product_name": "Cloud Services",
+          "price": 25000,
+          "quantity": 15,
+          "offer": 0,
+          "bought_price": 17500,
+          "for_sale": false
         }
       ]
     },
@@ -88,6 +128,30 @@
           "quantity": 200,
           "offer": 0,
           "bought_price": 840,
+          "for_sale": false
+        },
+        {
+          "product_name": "Silk Sarees",
+          "price": 5000,
+          "quantity": 100,
+          "offer": 0,
+          "bought_price": 3500,
+          "for_sale": false
+        },
+        {
+          "product_name": "Cotton Kurtis",
+          "price": 600,
+          "quantity": 250,
+          "offer": 0,
+          "bought_price": 420,
+          "for_sale": false
+        },
+        {
+          "product_name": "Formal Trousers",
+          "price": 900,
+          "quantity": 180,
+          "offer": 0,
+          "bought_price": 630,
           "for_sale": false
         }
       ]
@@ -110,6 +174,30 @@
           "offer": 0,
           "bought_price": 245,
           "for_sale": false
+        },
+        {
+          "product_name": "First Aid Kit",
+          "price": 450,
+          "quantity": 200,
+          "offer": 0,
+          "bought_price": 315,
+          "for_sale": false
+        },
+        {
+          "product_name": "Immunity Boosters",
+          "price": 300,
+          "quantity": 300,
+          "offer": 0,
+          "bought_price": 210,
+          "for_sale": false
+        },
+        {
+          "product_name": "Skincare Products",
+          "price": 250,
+          "quantity": 350,
+          "offer": 0,
+          "bought_price": 175,
+          "for_sale": false
         }
       ]
     },
@@ -130,6 +218,30 @@
           "quantity": 600,
           "offer": 0,
           "bought_price": 35,
+          "for_sale": false
+        },
+        {
+          "product_name": "Fruit Tarts",
+          "price": 150,
+          "quantity": 200,
+          "offer": 0,
+          "bought_price": 105,
+          "for_sale": false
+        },
+        {
+          "product_name": "Cupcakes",
+          "price": 80,
+          "quantity": 400,
+          "offer": 0,
+          "bought_price": 56,
+          "for_sale": false
+        },
+        {
+          "product_name": "Bread Loaf",
+          "price": 60,
+          "quantity": 300,
+          "offer": 0,
+          "bought_price": 42,
           "for_sale": false
         }
       ]
@@ -152,6 +264,30 @@
           "offer": 0,
           "bought_price": 840,
           "for_sale": false
+        },
+        {
+          "product_name": "Brake Pads",
+          "price": 2000,
+          "quantity": 300,
+          "offer": 0,
+          "bought_price": 1400,
+          "for_sale": false
+        },
+        {
+          "product_name": "Air Filters",
+          "price": 800,
+          "quantity": 400,
+          "offer": 0,
+          "bought_price": 560,
+          "for_sale": false
+        },
+        {
+          "product_name": "Spark Plugs",
+          "price": 300,
+          "quantity": 600,
+          "offer": 0,
+          "bought_price": 210,
+          "for_sale": false
         }
       ]
     },
@@ -172,6 +308,30 @@
           "quantity": 50,
           "offer": 0,
           "bought_price": 4900,
+          "for_sale": false
+        },
+        {
+          "product_name": "Sofa Set",
+          "price": 15000,
+          "quantity": 30,
+          "offer": 0,
+          "bought_price": 10500,
+          "for_sale": false
+        },
+        {
+          "product_name": "Coffee Tables",
+          "price": 3000,
+          "quantity": 80,
+          "offer": 0,
+          "bought_price": 2100,
+          "for_sale": false
+        },
+        {
+          "product_name": "Bed Frames",
+          "price": 9000,
+          "quantity": 40,
+          "offer": 0,
+          "bought_price": 6300,
           "for_sale": false
         }
       ]
