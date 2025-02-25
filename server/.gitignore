@@ -1,0 +1,45 @@
+# Testing files
+/tests/
+*.test.js
+jest.config.js
+
+# Validation and schema files
+/utils/schemaValidation.js
+/utils/schemaCheck.js
+/utils/migrateDuplicateFields.js
+/config/schemaVersions.js
+/middleware/validateRequest.js
+
+# Archive
+/archive/
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Dependencies
+/node_modules/
+node_modules
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build files
+/dist/
+/build/
