@@ -2,14 +2,12 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
     try {
-        const conn = await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/tradezone', {
-            // These options are no longer needed in newer versions of Mongoose
-            // but included here for compatibility
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
-
+        const conn = await mongoose.connect(process.env.MONGODB_ATLAS_URI);
         console.log(`MongoDB Connected: ${conn.connection.host}`);
+        
+        // Test the connection by checking collections
+        const collections = await mongoose.connection.db.listCollections().toArray();
+        console.log('Available collections:', collections.map(c => c.name));
         
         // Add connection event listeners
         mongoose.connection.on('error', err => {
@@ -25,7 +23,7 @@ const connectDB = async () => {
         });
 
     } catch (error) {
-        console.error('MongoDB connection error:', error.message);
+        console.error('MongoDB connection error:', error);
         process.exit(1);
     }
 };

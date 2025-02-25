@@ -1,104 +1,124 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 const User = require('../models/User');
-const Market = require('../models/Market');
+const Business = require('../models/Business');
 const Product = require('../models/Product');
-const BankProduct = require('../models/BankProduct');
-const VendorProduct = require('../models/VendorProduct');
+const Inventory = require('../models/Inventory');
 
-// Import your data from server/data instead of client/src/data2
-const userData = require('../data/userData');
-const marketData = require('../data/marketData');
-const productData = require('../data/productData');
+// Import JSON data from data3
+const userDataJSON = require('../../client/src/data3/users.json');
+const businessData = require('../../client/src/data3/businesses.json');
+const productDataJSON = require('../../client/src/data3/products.json');
+const inventoryData = require('../../client/src/data3/inventories.json');
 
 const seedDatabase = async () => {
     try {
-        // Connect to MongoDB if not connected
+        // Connect to Atlas instead of local
         if (!mongoose.connection.readyState) {
-            await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/tradezone');
+            await mongoose.connect(process.env.MONGODB_ATLAS_URI);
+            console.log('Connected to MongoDB Atlas');
         }
 
-        // Clear existing data
+        // Clear existing data (if any)
         await User.deleteMany({});
-        await Market.deleteMany({});
-        await VendorProduct.deleteMany({});
-        await BankProduct.deleteMany({});
+        await Business.deleteMany({});
         await Product.deleteMany({});
+        await Inventory.deleteMany({});
 
         console.log('Existing data cleared');
 
-        // Seed Users
-        const users = await User.insertMany(
-            userData.map(user => ({
-                user_name: user.name,
-                user_email: user.email,
-                user_role: user.role,
-                user_avatar: user.image,
-                join_date: new Date(user.joinDate),
-                last_active: new Date(user.lastActive),
-                status: user.status
-            }))
-        );
-        console.log(`✅ ${users.length} users seeded`);
+        // Maps for storing references
+        const userMap = new Map();
+        const productMap = new Map();
+        const businessMap = new Map();
+        const tempInventoryIds = new Map();  // To store temporary IDs
 
-        // Seed Markets with their products
-        const markets = await Market.insertMany(
-            marketData.map(market => ({
-                name: market.name,
-                email: market.email,
-                bussinessName: market.bussinessName,
-                businessSector: market.businessSector,
-                marketImage: market.marketImage,
-                capital: market.capital,
-                annualTurnover: market.annualTurnover,
-                profit: market.profit,
-                rating: market.rating,
-                location: market.location,
-                partnerSince: market.partnerSince
-            }))
-        );
-        console.log(`✅ ${markets.length} markets seeded`);
+        // 1. Seed Users
+        console.log('Seeding users...');
+        for (const user of userDataJSON.users) {
+            const newUser = await User.create(user);
+            userMap.set(user.email, newUser._id);
+        }
+        console.log(`✅ Users seeded`);
 
-        // Create products for each market
-        for (let i = 0; i < marketData.length; i++) {
-            const marketProducts = marketData[i].products.map(product => ({
-                name: product.name,
-                description: product.description,
-                price: product.price,
-                image: product.image,
-                market: markets[i]._id,
-                quantity: product.quantity,
-                stock: product.quantity,
-                isAvailable: true
+        // 2. Seed Products
+        console.log('Seeding products...');
+        for (const product of productDataJSON.products) {
+            const newProduct = await Product.create(product);
+            productMap.set(product.product_name, newProduct._id);
+        }
+        console.log(`✅ Products seeded`);
+
+        // 3. Seed Businesses with temporary inventory_ids
+        console.log('Seeding businesses...');
+        for (const business of businessData.businesses) {
+            const owner_id = userMap.get(business.email);
+            const temp_inventory_id = new mongoose.Types.ObjectId();  // Create temporary ID
+            tempInventoryIds.set(business.email, temp_inventory_id);  // Store for later
+
+            const newBusiness = await Business.create({
+                owner: owner_id,
+                business_name: business.business_name,
+                business_sector: business.business_sector,
+                capital: business.capital,
+                annual_turnover: business.annual_turnover,
+                business_image: business.business_image,
+                rating: business.rating,
+                location: business.location,
+                inventory_id: temp_inventory_id  // Use temporary ID
+            });
+            businessMap.set(business.email, newBusiness._id);
+        }
+        console.log(`✅ Businesses seeded`);
+
+        // 4. Seed Inventories and Update Businesses with real IDs
+        console.log('Seeding inventories...');
+        for (const inventory of inventoryData.inventories) {
+            const business_id = businessMap.get(inventory.business_email);
+            
+            const products = inventory.products.map(prod => ({
+                product: productMap.get(prod.product_name),
+                price: prod.price,
+                quantity: prod.quantity,
+                offer: prod.offer,
+                bought_price: prod.bought_price,
+                for_sale: prod.for_sale
             }));
 
-            const savedProducts = await Product.insertMany(marketProducts);
-            
-            // Update market with product references
-            await Market.findByIdAndUpdate(markets[i]._id, {
-                $push: { products: { $each: savedProducts.map(p => p._id) } }
+            const newInventory = await Inventory.create({
+                business: business_id,
+                products: products
+            });
+
+            // Update business with real inventory_id
+            await Business.findByIdAndUpdate(business_id, {
+                inventory_id: newInventory._id
             });
         }
-
-        console.log('Products seeded and linked to markets');
+        console.log(`✅ Inventories seeded`);
 
         // Final verification
         const userCount = await User.countDocuments();
-        const marketCount = await Market.countDocuments();
+        const businessCount = await Business.countDocuments();
         const productCount = await Product.countDocuments();
+        const inventoryCount = await Inventory.countDocuments();
 
         console.log('\nFinal Database State:');
         console.log(`Users: ${userCount}`);
-        console.log(`Markets: ${marketCount}`);
+        console.log(`Businesses: ${businessCount}`);
         console.log(`Products: ${productCount}`);
+        console.log(`Inventories: ${inventoryCount}`);
 
         console.log('\nDatabase seeded successfully ✅');
-        process.exit(0);
     } catch (error) {
         console.error('❌ Error seeding database:', error);
-        process.exit(1);
+        throw error;
+    } finally {
+        await mongoose.connection.close();
     }
 };
 
 // Execute the seed function
 seedDatabase();
+
+module.exports = seedDatabase;
