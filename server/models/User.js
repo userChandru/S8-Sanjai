@@ -1,5 +1,18 @@
 const mongoose = require('mongoose');
 
+/**
+ * User Model
+ * @example
+ * {
+ *   name: "Chandru",
+ *   email: "chandru.cb22@bitsathy.ac.in",
+ *   role: "vendor",
+ *   avatar: "https://...",
+ *   join_date: Date,
+ *   last_active: Date,
+ *   status: "active"
+ * }
+ */
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -19,11 +32,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    joinDate: {
+    join_date: {
         type: Date,
         default: Date.now
     },
-    lastActive: {
+    last_active: {
         type: Date,
         default: Date.now
     },
@@ -36,4 +49,21 @@ const userSchema = new mongoose.Schema({
     timestamps: true
 });
 
-module.exports = mongoose.models.User || mongoose.model('User', userSchema); 
+userSchema.pre('save', function(next) {
+    const schemaFields = require('../utils/schemaValidation').user.required_fields;
+    const missingFields = [];
+
+    for (let field in schemaFields) {
+        if (!this[field]) {
+            missingFields.push(field);
+        }
+    }
+
+    if (missingFields.length > 0) {
+        next(new Error(`Missing required fields: ${missingFields.join(', ')}`));
+    } else {
+        next();
+    }
+});
+
+module.exports = mongoose.model('User', userSchema); 

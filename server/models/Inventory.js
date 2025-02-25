@@ -1,5 +1,20 @@
 const mongoose = require('mongoose');
 
+/**
+ * Inventory Model
+ * @example
+ * {
+ *   business: ObjectId,
+ *   products: [{
+ *     product: ObjectId,
+ *     price: 100,
+ *     quantity: 50,
+ *     offer: 10,
+ *     bought_price: 80,
+ *     for_sale: true
+ *   }]
+ * }
+ */
 const inventorySchema = new mongoose.Schema({
     business: {
         type: mongoose.Schema.Types.ObjectId,
@@ -44,6 +59,23 @@ const inventorySchema = new mongoose.Schema({
             }
         }
     }]
+});
+
+inventorySchema.pre('save', function(next) {
+    const schemaFields = require('../utils/schemaValidation').inventory.required_fields;
+    const missingFields = [];
+
+    for (let field in schemaFields) {
+        if (!this[field]) {
+            missingFields.push(field);
+        }
+    }
+
+    if (missingFields.length > 0) {
+        next(new Error(`Missing required fields: ${missingFields.join(', ')}`));
+    } else {
+        next();
+    }
 });
 
 module.exports = mongoose.model('Inventory', inventorySchema);
