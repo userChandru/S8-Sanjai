@@ -10,5 +10,6 @@ router.get('/', auth, businessController.getAllBusinesses);
 router.get('/:id', auth, businessController.getBusinessById);
 router.put('/:id', auth, validateRequest('business'), businessController.updateBusiness);
 router.delete('/:id', auth, businessController.deleteBusiness);
+router.get('/owner/:userId', auth, businessController.getBusinessesByOwner);
 
 module.exports = router; 
