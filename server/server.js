@@ -29,6 +29,7 @@ app.get('/api/health', (req, res) => {
 const userRoutes = require('./routes/userRoutes');
 app.use('/api/users', userRoutes);
 app.use('/api/businesses', require('./routes/businessRoutes'));
+app.use('/api/products', require('./routes/productRoutes'));
 console.log('Routes registered:', app._router.stack.map(r => r.route?.path).filter(Boolean));
 
 // Error handling middleware
