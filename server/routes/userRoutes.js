@@ -11,6 +11,7 @@ console.log('User routes registered');
 router.get('/profile', auth, userController.getProfile);
 router.put('/profile', auth, userController.updateProfile);
 router.get('/vendors', auth, userController.getVendors);
+router.get('/profile/businesses', auth, userController.getUserBusinesses);
 router.get('/:id', auth, userController.getUserById);
 router.get('/', auth, userController.getAllUsers);
 

@@ -1,5 +1,6 @@
 const Business = require('../models/Business');
 const Inventory = require('../models/Inventory');
+const User = require('../models/User');
 
 /**
  * Create new business
@@ -51,8 +52,8 @@ exports.createBusiness = async (req, res) => {
 
             // Then create the inventory with business reference
             const inventory = await Inventory.create([{
-                business: business[0]._id,  // Set business reference
-                products: []  // Empty products array initially
+                business: business[0]._id,
+                products: []
             }], { session });
 
             // Update business with inventory reference
@@ -62,12 +63,19 @@ exports.createBusiness = async (req, res) => {
                 { session }
             );
 
+            // Add business to user's businesses array
+            await User.findByIdAndUpdate(
+                req.user._id,
+                { $push: { businesses: business[0]._id } },
+                { session }
+            );
+
             await session.commitTransaction();
-            
+
             // Return the business with populated inventory
             const populatedBusiness = await Business.findById(business[0]._id)
                 .populate('inventory_id');
-                
+
             res.status(201).json(populatedBusiness);
 
         } catch (error) {
@@ -87,8 +95,7 @@ exports.createBusiness = async (req, res) => {
 exports.getAllBusinesses = async (req, res) => {
     try {
         const businesses = await Business.find()
-            .populate('owner', 'name email')
-            .sort({ registration_date: -1 });
+            .populate('owner', 'name email');
         res.json(businesses);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -114,32 +121,27 @@ exports.getBusinessById = async (req, res) => {
 // Update business
 exports.updateBusiness = async (req, res) => {
     try {
-        console.log('User ID:', req.user._id); // Debug log
         const business = await Business.findById(req.params.id);
-        console.log('Business Owner:', business?.owner); // Debug log
         
         if (!business) {
             return res.status(404).json({ message: 'Business not found' });
         }
 
-        // Check if user is the owner
+        // Check if user owns this business
         if (business.owner.toString() !== req.user._id.toString()) {
-            console.log('Auth mismatch:', {
-                owner: business.owner.toString(),
-                user: req.user._id.toString()
-            }); // Debug log
-            return res.status(403).json({ message: 'Not authorized' });
+            return res.status(403).json({ message: 'Not authorized to update this business' });
         }
 
+        // Update business
         const updatedBusiness = await Business.findByIdAndUpdate(
             req.params.id,
-            { $set: req.body },
+            req.body,
             { new: true }
-        );
+        ).populate('owner', 'name email');
 
         res.json(updatedBusiness);
     } catch (error) {
-        console.error('Update business error:', error);
+        console.error('Business update error:', error);
         res.status(500).json({ message: error.message });
     }
 };
@@ -157,6 +159,12 @@ exports.deleteBusiness = async (req, res) => {
         if (business.owner.toString() !== req.user._id.toString()) {
             return res.status(403).json({ message: 'Not authorized' });
         }
+
+        // Remove business from user's businesses array
+        await User.findByIdAndUpdate(
+            business.owner,
+            { $pull: { businesses: business._id } }
+        );
 
         await business.remove();
         res.json({ message: 'Business deleted successfully' });
@@ -201,6 +209,16 @@ exports.addCollaborator = async (req, res) => {
 exports.getBusinessesByOwner = async (req, res) => {
     try {
         const businesses = await Business.find({ owner: req.params.userId });
+        res.json(businesses);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+exports.getMyBusinesses = async (req, res) => {
+    try {
+        const businesses = await Business.find({ owner: req.user._id })
+            .populate('owner', 'name email');
         res.json(businesses);
     } catch (error) {
         res.status(500).json({ message: error.message });

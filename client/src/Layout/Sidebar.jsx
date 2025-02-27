@@ -68,6 +68,9 @@ const Sidebar = () => {
     }
   };
 
+  // Add debug log to check cart items
+  console.log('Current cart items:', cartItems);
+
   return (
     <div className="flex flex-col w-full h-full p-2 space-y-2 bg-white rounded-xl">
       <div className="relative p-1">
@@ -108,31 +111,34 @@ const Sidebar = () => {
           <Lottie animationData={Garbagecan} loop={true} className="h-72" />
         ) : (
           <div className="w-full flex-1 overflow-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
-            {cartItems.map((item, index) => (
-              <div key={index} className="p-3 border-b border-gray-200">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-3">
-                    <div 
-                      className="h-12 w-12 bg-cover bg-center rounded-lg"
-                      style={{ backgroundImage: `url(${item.image})` }}
-                    />
-                    <div>
-                      <p className="font-semibold">{item.name}</p>
-                      <div className="flex items-center text-green-600">
-                        <TbCurrencyRupee className="size-4" />
-                        <span>{item.price}</span>
+            {cartItems.map((item, index) => {
+              console.log('Rendering cart item:', item); // Debug log for each item
+              return (
+                <div key={index} className="p-3 border-b border-gray-200">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <div 
+                        className="h-12 w-12 bg-cover bg-center rounded-lg"
+                        style={{ backgroundImage: `url(${item.image})` }}
+                      />
+                      <div>
+                        <p className="font-semibold">{item.name}</p>
+                        <div className="flex items-center text-green-600">
+                          <TbCurrencyRupee className="size-4" />
+                          <span>{item.price}</span>
+                        </div>
                       </div>
                     </div>
+                    <button 
+                      onClick={() => removeFromCart(item.name)}
+                      className="text-red-500 hover:text-red-600"
+                    >
+                      <MdDelete className="size-5" />
+                    </button>
                   </div>
-                  <button 
-                    onClick={() => removeFromCart(item.id)}
-                    className="text-red-500 hover:text-red-600"
-                  >
-                    <MdDelete className="size-5" />
-                  </button>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
         

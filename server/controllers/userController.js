@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const mongoose = require('mongoose');
+const Business = require('../models/Business');
 
 exports.login = async (req, res) => {
     console.log('Login attempt:', req.body);
@@ -20,7 +21,8 @@ exports.login = async (req, res) => {
                 role: 'vendor',
                 status: 'active',
                 join_date: new Date(),
-                last_active: new Date()
+                last_active: new Date(),
+                businesses: []
             });
 
             user = await User.create({
@@ -30,7 +32,8 @@ exports.login = async (req, res) => {
                 role: 'vendor',
                 status: 'active',
                 join_date: new Date(),
-                last_active: new Date()
+                last_active: new Date(),
+                businesses: []
             });
             console.log('New user created:', user);
         }
@@ -115,6 +118,18 @@ exports.getAllUsers = async (req, res) => {
     try {
         const users = await User.find();
         res.json(users);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+exports.getUserBusinesses = async (req, res) => {
+    try {
+        const user = await User.findById(req.user._id).populate('businesses');
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.json(user.businesses);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

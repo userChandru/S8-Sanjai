@@ -28,6 +28,10 @@ const userSchema = new mongoose.Schema({
         enum: ['vendor', 'bank', 'admin'],
         default: 'vendor'
     },
+    businesses: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Business'
+    }],
     avatar: {
         type: String,
         required: true
