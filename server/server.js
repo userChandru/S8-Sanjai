@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/database');
 const validateSchemas = require('./utils/schemaCheck');
+const authRoutes = require('./routes/authRoutes');
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -31,6 +32,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/businesses', require('./routes/businessRoutes'));
 app.use('/api/products', require('./routes/productRoutes'));
 app.use('/api/inventories', require('./routes/inventoryRoutes'));
+app.use('/api/auth', authRoutes);
 console.log('Routes registered:', app._router.stack.map(r => r.route?.path).filter(Boolean));
 
 // Error handling middleware
