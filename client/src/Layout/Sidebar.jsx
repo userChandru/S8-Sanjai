@@ -9,12 +9,14 @@ import { MdDelete } from "react-icons/md";
 import Lottie from "lottie-react";
 import Garbagecan from "../assets/Animation/garbage.json"
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
   const [time, setTime] = useState("");
   const [progress, setProgress] = useState(0);
   const { cartItems, removeFromCart, clearCart } = useCart();
   const [currentUser] = useState(Userdata[0]); // Get the first user from the array
+  const navigate = useNavigate();
 
   useEffect(() => {
     const updateTime = () => {
@@ -37,36 +39,6 @@ const Sidebar = () => {
 
     return () => clearInterval(interval);
   }, []);
-
-  const handlePurchase = async () => {
-    const loadingToast = toast.loading('Processing purchase...');
-    
-    try {
-      const response = await fetch('http://localhost:5000/api/purchases', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ items: cartItems }),
-      });
-      
-      if (response.ok) {
-        clearCart();
-        toast.success('Purchase successful!', {
-          id: loadingToast,
-          icon: '🛍️',
-        });
-      } else {
-        throw new Error('Purchase failed');
-      }
-    } catch (error) {
-      console.error('Purchase failed:', error);
-      toast.error('Purchase failed. Please try again.', {
-        id: loadingToast,
-        icon: '❌',
-      });
-    }
-  };
 
   // Add debug log to check cart items
   console.log('Current cart items:', cartItems);
@@ -144,7 +116,7 @@ const Sidebar = () => {
         
         <div className="w-full p-2">
           <button 
-            onClick={handlePurchase}
+            onClick={() => navigate('/purchase')}
             disabled={cartItems.length === 0}
             className={`w-full p-2 rounded-xl font-semibold text-center ${
               cartItems.length === 0 

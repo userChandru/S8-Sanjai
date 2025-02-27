@@ -16,6 +16,7 @@ import AdminLayout from "./Admin/Layout/AdminLayout";
 import { CartProvider } from "./context/CartContext";
 import { Toaster } from "react-hot-toast";
 import BusinessPage from './Pages/BusinessPage';
+import PurchasePage from './Pages/PurchasePage';
 
 const App = () => {
   return (
@@ -63,6 +64,8 @@ const App = () => {
               </Route>
 
               <Route path="/business" element={<BusinessPage />} />
+
+              <Route path="/purchase" element={<PurchasePage />} />
 
               <Route path="*" element={<ErrorPage />} />
             </Routes>
