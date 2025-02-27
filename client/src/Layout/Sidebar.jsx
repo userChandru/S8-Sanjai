@@ -41,7 +41,7 @@ const Sidebar = () => {
   }, []);
 
   // Add debug log to check cart items
-  console.log('Current cart items:', cartItems);
+  // console.log('Current cart items:', cartItems);
 
   return (
     <div className="flex flex-col w-full h-full p-2 space-y-2 bg-white rounded-xl">

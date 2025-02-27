@@ -5,8 +5,7 @@
   "scripts": {
     "start": "node server.js",
     "test": "jest",
-    "seed": "node utils/seedDatabase.js",
-    "update-users": "node scripts/updateUserBusinesses.js"
+    "seed": "node utils/seedDatabase.js"
   },
   "keywords": [],
   "author": "",

@@ -47,7 +47,7 @@ exports.addProduct = async (req, res) => {
             quantity,
             bought_price,
             offer: 0,
-            for_sale: false
+            for_sale: true,
         });
 
         await inventory.save();
