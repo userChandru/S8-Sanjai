@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import ButtonComponent from '../Components/ButtonComponent'
 import InputComponent from '../Components/InputComponent'
 import * as Yup from "yup"
 import { Formik, Form } from "formik"
 import { MdAdminPanelSettings } from "react-icons/md";
 import { useNavigate } from 'react-router-dom';
+import { useGoogleLogin } from '@react-oauth/google';
+import { AuthContext } from '../context/AuthContext';
+import axios from 'axios';
 
 const Authentication = () => {
+  const { setUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const initialvalues = {
@@ -44,6 +48,31 @@ const Authentication = () => {
     }
     setSubmitting(false);
   };
+
+  const login = useGoogleLogin({
+    onSuccess: async (response) => {
+      try {
+        // For testing, use the sample user data directly without Google API call
+        const sampleUser = {
+          _id: '67bc31183d7caf05bb345ca4',
+          email: 'sanjaigovindraj@gmail.com',
+          name: 'Sanjai',
+          businesses: ['67bc311c3d7caf05bb345cfd']
+        };
+
+        setUser(sampleUser);
+        localStorage.setItem('userEmail', sampleUser.email);
+        
+        // Use window.location.href for more reliable redirect
+        window.location.href = '/business';
+      } catch (error) {
+        console.error('Login error:', error);
+      }
+    },
+    flow: 'implicit',
+    ux_mode: 'redirect',
+    redirect_uri: window.location.origin + '/business'
+  });
 
   return (
     <div className='min-h-screen bg-[#e0e5ec] flex items-center justify-center p-4'>
@@ -83,6 +112,9 @@ const Authentication = () => {
             </Form>
           )}
         </Formik>
+        <button onClick={() => login()}>
+          Sign in with Google
+        </button>
       </div>
     </div>
   );

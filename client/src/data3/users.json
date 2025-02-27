@@ -12,7 +12,8 @@
       "avatar": "https://images.unsplash.com/photo-1633332755192-727a05c4013d",
       "join_date": "2020-01-15T00:00:00.000Z",
       "last_active": "2024-02-06T00:00:00.000Z",
-      "status": "active"
+      "status": "active",
+      "businesses": []
     },
     {
       "name": "Aditi Sharma",
@@ -21,7 +22,8 @@
       "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330",
       "join_date": "2019-08-20T00:00:00.000Z",
       "last_active": "2024-02-05T00:00:00.000Z",
-      "status": "active"
+      "status": "active",
+      "businesses": []
     },
     {
       "name": "Rohan Mehta",
@@ -30,7 +32,8 @@
       "avatar": "https://images.unsplash.com/photo-1599566150163-29194dcaad36",
       "join_date": "2021-03-10T00:00:00.000Z",
       "last_active": "2024-02-06T00:00:00.000Z",
-      "status": "active"
+      "status": "active",
+      "businesses": []
     },
     {
       "name": "Priya Verma",
@@ -39,7 +42,8 @@
       "avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80",
       "join_date": "2020-11-25T00:00:00.000Z",
       "last_active": "2024-02-04T00:00:00.000Z",
-      "status": "active"
+      "status": "active",
+      "businesses": []
     },
     {
       "name": "Arjun Patel",
@@ -48,7 +52,8 @@
       "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d",
       "join_date": "2022-06-15T00:00:00.000Z",
       "last_active": "2024-02-06T00:00:00.000Z",
-      "status": "active"
+      "status": "active",
+      "businesses": []
     },
     {
       "name": "Vikram Singh",
@@ -57,7 +62,8 @@
       "avatar": "https://images.unsplash.com/photo-1639149888905-fb39731f2e6c",
       "join_date": "2019-12-01T00:00:00.000Z",
       "last_active": "2024-02-05T00:00:00.000Z",
-      "status": "active"
+      "status": "active",
+      "businesses": []
     },
     {
       "name": "Neha Kapoor",
@@ -66,7 +72,8 @@
       "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2",
       "join_date": "2021-09-30T00:00:00.000Z",
       "last_active": "2024-02-06T00:00:00.000Z",
-      "status": "active"
+      "status": "active",
+      "businesses": []
     }
   ]
 } 
