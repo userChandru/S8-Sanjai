@@ -16,6 +16,8 @@ const Profile = () => {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [editingProduct, setEditingProduct] = useState(null);
+  const [showForSaleModal, setShowForSaleModal] = useState(false);
+  const [allProducts, setAllProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [businessName, setBusinessName] = useState('');
@@ -50,7 +52,10 @@ const Profile = () => {
         });
 
         console.log('Inventory response:', inventoryResponse.data);
-        setProducts(inventoryResponse.data.products || []);
+        // Only show products that are for_sale in the main view
+        setProducts(inventoryResponse.data.products.filter(p => p.for_sale) || []);
+        // Store all products for the modal
+        setAllProducts(inventoryResponse.data.products || []);
       } catch (error) {
         console.error('Error fetching data:', error);
         setError(error.response?.data?.message || error.message);
@@ -119,6 +124,32 @@ const Profile = () => {
     });
   };
 
+  const handleToggleForSale = async (productId, currentStatus) => {
+    try {
+      await api.patch(
+        `/inventories/${businessId}/products/${productId}/toggle-sale`,
+        { skipAuth: 'true' }
+      );
+
+      // Update local state
+      const updatedAllProducts = allProducts.map(product => {
+        if (product.product._id === productId) {
+          return { ...product, for_sale: !currentStatus };
+        }
+        return product;
+      });
+      setAllProducts(updatedAllProducts);
+      
+      // Update products shown in main view
+      setProducts(updatedAllProducts.filter(p => p.for_sale));
+      
+      toast.success('Product visibility updated successfully');
+    } catch (error) {
+      console.error('Error toggling product sale status:', error);
+      toast.error('Failed to update product visibility');
+    }
+  };
+
   return (
     <div>
       <div className=" overflow-hidden relative bg-gray-100 w-full h-60">
@@ -130,9 +161,14 @@ const Profile = () => {
         </div>
         <FaShop className=" text-gray-600 -bottom-10 right-20 absolute size-60 " />
       </div>
-      <div className=" my-5 flex items-center justify-center bg-gray-100  *:p-2 space-x-4 *:rounded-xl *:px-3">
-        {/* <p>Purchased</p>
-        <p>Sold</p> */}{" "}
+      <div className="my-5 flex items-center justify-center bg-gray-100 *:p-2 space-x-4 *:rounded-xl *:px-3">
+        <button
+          onClick={() => setShowForSaleModal(true)}
+          className="bg-blue-600 text-white px-4 py-2 rounded-xl flex items-center space-x-2"
+        >
+          <span>Manage For Sale Items</span>
+          <FaShop className="size-5" />
+        </button>
       </div>
       {loading ? (
         <div className="flex justify-center items-center h-64">
@@ -245,6 +281,54 @@ const Profile = () => {
               </div>
             </div>
           ))}
+        </div>
+      )}
+
+      {/* For Sale Modal */}
+      {showForSaleModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-xl w-3/4 max-h-[80vh] overflow-y-auto">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-2xl font-bold">Manage For Sale Items</h2>
+              <button
+                onClick={() => setShowForSaleModal(false)}
+                className="text-gray-600 hover:text-gray-800"
+              >
+                ✕
+              </button>
+            </div>
+            <div className="grid grid-cols-1 gap-4">
+              {allProducts.map((item) => (
+                <div key={item.product._id} className="flex items-center justify-between p-4 bg-gray-100 rounded-xl">
+                  <div className="flex items-center space-x-4">
+                    <img
+                      src={item.product.product_image}
+                      alt={item.product.product_name}
+                      className="w-16 h-16 object-cover rounded-lg"
+                    />
+                    <div>
+                      <p className="font-semibold">{item.product.product_name}</p>
+                      <p className="text-gray-600">Price: ₹{item.price}</p>
+                      <p className="text-gray-600">Stock: {item.quantity}</p>
+                    </div>
+                  </div>
+                  <label className="relative inline-flex items-center cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={item.for_sale}
+                      onChange={() => handleToggleForSale(item.product._id, item.for_sale)}
+                      className="sr-only peer"
+                      disabled={item.quantity === 0}
+                    />
+                    <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                    <span className="ml-3 text-sm font-medium text-gray-900">
+                      {item.for_sale ? 'For Sale' : 'Not For Sale'}
+                    </span>
+                  </label>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       )}
     </div>
