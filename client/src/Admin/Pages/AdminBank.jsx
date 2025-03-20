@@ -113,11 +113,14 @@ const AdminBank = () => {
           <p>No products found in inventory</p>
         </div>
       ) : (
-        <div className="pb-10 grid grid-cols-3 px-10 gap-10">
+        <div className="pb-10 grid grid-cols-3 px-10 gap-10 mt-8">
           {products.map((item) => (
-            <div key={item.product._id} className="relative bg-gray-100 p-2 rounded-xl">
+            <div 
+              key={item.product._id} 
+              className="relative bg-gray-100 p-4 rounded-xl transition-all duration-300 hover:shadow-xl hover:scale-[1.02] hover:bg-white"
+            >
               <div 
-                className="h-40 bg-white rounded-xl bg-cover bg-center"
+                className="h-40 bg-white rounded-xl bg-cover bg-center mb-4"
                 style={{ backgroundImage: `url(${item.product.product_image})` }}
               />
               
@@ -172,14 +175,14 @@ const AdminBank = () => {
               ) : (
                 // Display mode
                 <>
-                  <div className="my-2 text-xl items-center flex justify-between">
+                  <div className="my-4 text-xl items-center flex justify-between">
                     <p className="font-semibold">{item.product.product_name}</p>
                     <p className="flex items-center justify-center mr-3 font-semibold">
                       <TbCurrencyRupee className="text-green-600 size-6" />
                       <span className="text-green-600">{item.price}</span>
                     </p>
                   </div>
-                  <div className="space-x-2 my-2 flex w-full items-center">
+                  <div className="space-x-2 my-4 flex w-full items-center">
                     <p className="flex-1 flex items-center justify-center space-x-2 text-pink-600 bg-pink-100 px-2 p-1 rounded-xl text-sm font-semibold">
                       <MdInventory />
                       <span>{item.quantity} Stock left</span>
@@ -191,7 +194,7 @@ const AdminBank = () => {
                   </div>
                   <button 
                     onClick={() => handleEdit(item)}
-                    className="w-full rounded-xl flex items-center justify-center space-x-4 text-white p-2 text-center bg-gray-800"
+                    className="w-full rounded-xl flex items-center justify-center space-x-4 text-white p-3 text-center bg-gray-800 mt-4 hover:bg-gray-700 transition-colors duration-300"
                   >
                     <span>Edit</span>
                     <FaEdit className="size-5" />

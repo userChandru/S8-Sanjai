@@ -5,7 +5,6 @@ import { HiMiniArrowTrendingUp } from "react-icons/hi2";
 import { MdInventory } from "react-icons/md";
 import { HiPercentBadge } from "react-icons/hi2";
 import avatar from "../assets/img/avatar.png";
-import { Link } from "react-router-dom";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { TbCurrencyRupee } from "react-icons/tb";
 import { useCart } from '../context/CartContext';
@@ -17,7 +16,20 @@ const Marketplace = () => {
   const { addToCart } = useCart();
 
   const handleAddToCart = (product) => {
-    addToCart(product);
+    // Add product to cart with all necessary data for inventory addition
+    console.log('Adding product to cart:', product);
+    const cartItem = {
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      quantity: 1,
+      stock: product.quantity,
+      productId: product._id, // Add product ID for inventory
+      businessId: selectedMarket.businessId // Add business ID where product is from
+    };
+    
+    console.log('Cart item created:', cartItem);
+    addToCart(cartItem);
     toast.success(`Added ${product.name} to cart!`, {
       icon: '🛒',
       style: {
@@ -80,10 +92,12 @@ const Marketplace = () => {
                     <img
                       src={avatar}
                       className=" rounded-full overflow-hidden   border-2 border-black h-10 bg-white"
+                      alt="Avatar"
                     />
                     <img
                       src={avatar}
                       className=" rounded-full overflow-hidden  border-2 border-black h-10 -ml-2 z-10 bg-white"
+                      alt="Avatar"
                     />
                   </div>
                   <div>

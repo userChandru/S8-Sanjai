@@ -45,15 +45,18 @@ const Bank = () => {
   }, []);
 
   const handleAddToCart = (product) => {
+    console.log('Adding bank product to cart:', product);
     const cartItem = {
       name: product.product.product_name,
       price: product.price,
       image: product.product.product_image,
       quantity: 1,
       stock: product.quantity,
-      businessId: bankBusinessId
+      businessId: bankBusinessId,
+      productId: product.product._id
     };
 
+    console.log('Bank cart item created:', cartItem);
     addToCart(cartItem);
     toast.success(`Added ${product.product.product_name} to cart!`, {
       icon: '🛒',

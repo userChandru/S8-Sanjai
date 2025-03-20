@@ -8,9 +8,10 @@ import { useNavigate } from 'react-router-dom';
 import { useGoogleLogin } from '@react-oauth/google';
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
+import { useUser } from '../context/UserContext';
 
 const Authentication = () => {
-  const { setUser } = useContext(AuthContext);
+  const { user, setUser } = useUser();
   const navigate = useNavigate();
 
   const initialvalues = {
@@ -112,9 +113,6 @@ const Authentication = () => {
             </Form>
           )}
         </Formik>
-        <button onClick={() => login()}>
-          Sign in with Google
-        </button>
       </div>
     </div>
   );

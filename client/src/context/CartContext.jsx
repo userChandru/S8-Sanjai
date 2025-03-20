@@ -26,15 +26,15 @@ export const CartProvider = ({ children }) => {
       // Check if item already exists by name instead of id
       const existingItem = prevItems.find(i => i.name === item.name);
       if (existingItem) {
-        // Update quantity if item exists
+        // Update quantity if item exists but preserve all other properties
         return prevItems.map(i => 
           i.name === item.name 
-            ? { ...i, quantity: i.quantity + 1 }
+            ? { ...item, quantity: i.quantity + 1 }
             : i
         );
       }
-      // Add new item with quantity 1
-      return [...prevItems, { ...item, quantity: 1 }];
+      // Add new item with all properties intact
+      return [...prevItems, item];
     });
   };
 
